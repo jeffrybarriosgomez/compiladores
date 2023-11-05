@@ -1,0 +1,32 @@
+package codigo;
+
+import java_cup.runtime.Symbol;
+
+parser code
+{:
+    private Symbol s;
+    
+    public void syntax_error(Symbol s){
+        this.s = s;
+    }
+
+    public Symbol getS(){
+        return this.s;
+}
+:};
+terminal Revoke,T_On,From,P_coma,Coma,Privilegio,ReservadaG,Identificador,Punto,ERROR;
+
+non terminal TAREA,LP,TABLA,US,MR,PV,RG,UO,MU,MP,ON;
+
+start with TAREA;
+TAREA ::= Revoke LP ON TABLA From US P_coma MR;
+MR ::= | TAREA;
+ON::= T_On;
+LP ::= PV Coma MP;
+MP ::= | PV Coma MP;
+PV ::= Privilegio;
+TABLA ::= Identificador | Identificador Punto Identificador;
+US::=  RG UO Coma MU;
+MU::= | RG UO Coma MU;
+RG::= ReservadaG;
+UO::= Identificador;
