@@ -14,7 +14,7 @@ parser code
         return this.s;
 }
 :};
-terminal Revoke,T_On,From,P_coma,Coma,Select,Insert,Update,Delete,All,ReservadaG,Identificador,Punto;
+terminal Revoke,T_On,From,P_coma,Coma,Select,Insert,Update,Delete,All,ReservadaG,Identificador,Punto,ERROR;
 
 non terminal TAREA,LP,TABLA,US,MR,PV,RG,MU,MP,ON,FROM;
 
