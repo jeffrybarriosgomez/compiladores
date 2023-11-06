@@ -32,6 +32,7 @@ public class FrmMain extends javax.swing.JFrame {
     public FrmMain() {
         initComponents();
         this.setLocationRelativeTo(null);
+        txtResultado.setText("REVOKE SELECT, UPDATE ON CORPDATA.EMPLOYEE FROM GROUP JOHN;");
     }
 
     /**
@@ -186,13 +187,13 @@ public class FrmMain extends javax.swing.JFrame {
     
      private void analizarSintactico() throws IOException{
          String ST = txtResultado.getText();
-        Sintax s = new Sintax(new codigo.LexerCup(new StringReader(ST)));
+        Sintax s = new Sintax(new codigo.LexerCup(new StringReader(ST.trim())));
         
         try {
             s.parse();
             txtAnalizarSin.setText("Analisis realizado correctamente");
             txtAnalizarSin.setForeground(new Color(25, 111, 61));
-        } catch (Exception ex) {
+        } catch (Exception ex)  {
             Symbol sym = s.getS();
             System.out.println(sym.toString());
             txtAnalizarSin.setText("Error de sintaxis. Linea: " + (sym.right + 1) + " Columna: " + (sym.left + 1) + ", Texto: \"" + sym.value + "\"");

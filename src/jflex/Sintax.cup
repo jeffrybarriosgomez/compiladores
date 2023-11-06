@@ -14,19 +14,19 @@ parser code
         return this.s;
 }
 :};
-terminal Revoke,T_On,From,P_coma,Coma,Privilegio,ReservadaG,Identificador,Punto,ERROR;
+terminal Revoke,T_On,From,P_coma,Coma,Select,Insert,Update,Delete,All,ReservadaG,Identificador,Punto;
 
-non terminal TAREA,LP,TABLA,US,MR,PV,RG,UO,MU,MP,ON;
+non terminal TAREA,LP,TABLA,US,MR,PV,RG,MU,MP,ON,FROM;
 
 start with TAREA;
-TAREA ::= Revoke LP ON TABLA From US P_coma MR;
-MR ::= | TAREA;
-ON::= T_On;
-LP ::= PV Coma MP;
-MP ::= | PV Coma MP;
-PV ::= Privilegio;
+TAREA ::= Revoke LP ON TABLA FROM US P_coma MR;
+MP ::= | Coma PV MP;
+LP ::= PV MP;
+PV ::= Select | Insert |Update |Delete | All;
+ON ::= T_On;
 TABLA ::= Identificador | Identificador Punto Identificador;
-US::=  RG UO Coma MU;
-MU::= | RG UO Coma MU;
+FROM ::= From;
 RG::= ReservadaG;
-UO::= Identificador;
+MU::= | Coma RG Identificador MU;
+US::= Identificador | RG Identificador MU;
+MR ::= | TAREA;

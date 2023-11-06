@@ -21,7 +21,7 @@ espacio=[ ,\t,\r,\n]+
 %%
 
 /* Coma */
-( "," ) {return new Symbol(sym.Coma, yychar, yyline, yytext());}
+( ","{espacio}* ) {return new Symbol(sym.Coma, yychar, yyline, yytext());}
 
 /* Espacios en blanco */
 {espacio} {/*Ignore*/}
@@ -32,12 +32,16 @@ espacio=[ ,\t,\r,\n]+
 /* Resto de las reglas */
 /* Reservadas */
 ( REVOKE ) {return new Symbol(sym.Revoke, yychar, yyline, yytext());}
-( ON ) {return new Symbol(sym.T_On, yychar, yyline, yytext());}
+( ON {espacio}*) {return new Symbol(sym.T_On, yychar, yyline, yytext());}
 ( FROM ) {return new Symbol(sym.From, yychar, yyline, yytext());}
 ( USER | GROUP | ROLE ) {return new Symbol(sym.ReservadaG, yychar, yyline, yytext());}
 
 /* Privilegios */
-( SELECT | INSERT | UPDATE | DELETE | ALL ) {return new Symbol(sym.Privilegio, yychar, yyline, yytext());}
+( SELECT ) {return new Symbol(sym.Select, yychar, yyline, yytext());}
+( INSERT ) {return new Symbol(sym.Insert, yychar, yyline, yytext());}
+( UPDATE ) {return new Symbol(sym.Update, yychar, yyline, yytext());}
+( DELETE ) {return new Symbol(sym.Delete, yychar, yyline, yytext());}
+( ALL ) {return new Symbol(sym.All, yychar, yyline, yytext());}
 
 /* Punto y coma */
 ( ";" ) {return new Symbol(sym.P_coma, yychar, yyline, yytext());}
