@@ -16,17 +16,15 @@ parser code
 :};
 terminal Revoke,T_On,From,P_coma,Coma,Select,Insert,Update,Delete,All,ReservadaG,Identificador,Punto,ERROR;
 
-non terminal TAREA,LP,TABLA,US,MR,PV,RG,MU,MP,ON,FROM;
+non terminal TAREA,LP,TABLA,US,MR,PV,RG,MU,MP;
 
 start with TAREA;
-TAREA ::= Revoke LP ON TABLA FROM US P_coma MR;
-MP ::= | Coma PV MP;
+TAREA ::= Revoke LP T_On TABLA From US P_coma MR;
 LP ::= PV MP;
+MP ::= | Coma PV MP;
 PV ::= Select | Insert |Update |Delete | All;
-ON ::= T_On;
 TABLA ::= Identificador | Identificador Punto Identificador;
-FROM ::= From;
 RG::= ReservadaG;
-MU::= | Coma RG Identificador MU;
 US::= Identificador | RG Identificador MU;
+MU::= | Coma RG Identificador MU;
 MR ::= | TAREA;

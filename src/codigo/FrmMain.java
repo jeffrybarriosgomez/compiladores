@@ -138,20 +138,20 @@ public class FrmMain extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    private void analizarLexico() throws IOException{
+    private void analizarLexico() throws IOException {
         int cont = 1;
-        
+
         String expr = (String) txtResultado.getText();
         Lexer lexer = new Lexer(new StringReader(expr));
         String resultado = "LINEA " + cont + "\t\tSIMBOLO\n";
-        
+
         while (true) {
             Tokens token = lexer.yylex();
             if (token == null) {
                 txtAnalizarLex.setText(resultado);
                 return;
             }
-            
+
             switch (token) {
                 case Linea:
                     cont++;
@@ -184,29 +184,28 @@ public class FrmMain extends javax.swing.JFrame {
             }
         }
     }
-    
-     private void analizarSintactico() throws IOException{
-         String ST = txtResultado.getText();
+
+    private void analizarSintactico() throws IOException {
+        String ST = txtResultado.getText();
         Sintax s = new Sintax(new codigo.LexerCup(new StringReader(ST.trim())));
-        
+
         try {
             s.parse();
             txtAnalizarSin.setText("Analisis realizado correctamente");
             txtAnalizarSin.setForeground(new Color(25, 111, 61));
-        } catch (Exception ex)  {
+        } catch (Exception ex) {
             Symbol sym = s.getS();
-            System.out.println(sym.toString());
             txtAnalizarSin.setText("Error de sintaxis. Linea: " + (sym.right + 1) + " Columna: " + (sym.left + 1) + ", Texto: \"" + sym.value + "\"");
             txtAnalizarSin.setForeground(Color.red);
         }
-     }
-    
+    }
+
     private void btnArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArchivoActionPerformed
 // TODO add your handling code here:
         JFileChooser chooser = new JFileChooser();
         chooser.showOpenDialog(null);
         File archivo = new File(chooser.getSelectedFile().getAbsolutePath());
-        
+
         try {
             String ST = new String(Files.readAllBytes(archivo.toPath()));
             txtResultado.setText(ST);
