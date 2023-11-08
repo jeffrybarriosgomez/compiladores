@@ -22,83 +22,49 @@ Este analizador esta desarrollado utilizando los paquetes Jflex y Jcup para en a
 
 **GRAMATRICA**
 
-<<INICIO>> --> <<SC>>
-
-<<SC>>---> revoke <<LP> on <<TABLE>> from <<US>> ; <<MR>
-
-<<LP>>------> <<PV>> <<MP>>
-
-<<MP>>------> λ | , <<PV>> <<MP>>
-
-<<PV>>------> select | insert | update | delete | all 
-
-<<TABLE>>---> Id | nombre . Id
-
-<<RG>>------> user | group | role 
-
-<<US>>------> Id | <<RG>> Id <<MU>>
-
-<<MU>>------> λ | , <<RG>> Id <<MU>>
-
-<<MR>>------> λ | <<SC>>
+<INICIO> --> <SC>
+<SC>---> revoke <LP> on <TABLE> from <US> ; <<MR>
+<LP>------> <PV> <MP>
+<MP>------> λ | , <PV> <MP>
+<PV>------> select | insert | update | delete | all 
+<TABLE>---> Id | nombre . Id
+<RG>------> user | group | role 
+<US>------> Id | <RG> Id <MU>
+<MU>------> λ | , <RG> Id <MU>
+<MR>------> λ | <SC>
 
 **FIRST**
 
 first(INICIO)    = first(SC)
-
 first(SC)       = first(revoke)
-
 first(LP)       = first(PV)
-
 first(PV)       = {select, insert, update, delete, all}
-
 first(MP)       = λ U first(,)
-
 first(TABLE)       = first(Id) U first(nombre)
-
 first(RG)       = {user, group, role}
-
 first(US)       = first(Id) U first(RG)
-
 first(MU)       = λ U first(,)
-
 first(MR)       = λ U first(SC)
 
 first(INICIO) = first(SC) = {revoke}
-
 first(LP) = first(PV) = {select, insert, update, delete, all}
-
 first(MP)   = {λ , <,>}
-
 first(TABLE)    = {Id , nombre}
-
 first(RG)   = {user, group, role}
-
 first(US)   = {Id, user, group, role}
-
 first(MU) = {λ , <,>}
-
 first(MR) = {λ , revoke}
 
 **FOLLOW**
 
 follow(INICIO) = {$}
-
 follow(SC) = {revoke, $}
-
 follow(LP)  ={on}
-
 follow(MP) = {on}
-
 follow(PV)  ={, <,> on}
-
 follow(TABLE)  ={from}
-
 follow(RG)   ={Id}
-
 follow(US)  ={;}
-
 follow(MU) = {;}
-
 follow(MR) = {revoke, $}
 
