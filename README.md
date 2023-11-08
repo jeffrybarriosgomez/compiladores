@@ -1,5 +1,14 @@
 **Autómatas y lenguajes formales**
 
+Jeffry Jose Barrios Gomez 
+
+Juan Jose Medina Benitez
+
+Ian Steve Miranda Angulo
+
+Angel David Rodriguez Botello
+
+
 **ALCANCES:**
 
 la siguiente gramática está pensada para reconocer DCL REVOKE, utilizando la sintaxis del IBM DB2 V10 y así limitar los accesos a tablas o vistas de una base de datos.
