@@ -21,7 +21,7 @@ Algunos ejemplos de las sentencias testeadas, se pueden analizar una o mas sente
 Este analizador esta desarrollado utilizando los paquetes Jflex y Jcup para en análisis semántico y sintáctico en lenguaje Java version 17 open java con el IDE de desarrollo Netbean 19
 
 **GRAMATRICA**
-
+````
 <INICIO> --> <SC>
 <SC>---> revoke <LP> on <TABLE> from <US> ; <<MR>
 <LP>------> <PV> <MP>
@@ -32,7 +32,7 @@ Este analizador esta desarrollado utilizando los paquetes Jflex y Jcup para en a
 <US>------> Id | <RG> Id <MU>
 <MU>------> λ | , <RG> Id <MU>
 <MR>------> λ | <SC>
-
+````
 **FIRST**
 
 first(INICIO)    = first(SC)
