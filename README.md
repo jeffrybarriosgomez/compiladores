@@ -22,7 +22,7 @@ Este analizador esta desarrollado utilizando los paquetes Jflex y Jcup para en a
 
 **GRAMATRICA**
 
-'<INICIO>' --> <SC>
+<INICIO> --> <SC>
 <SC>---> revoke <LP> on <TABLE> from <US> ; <<MR>
 <LP>------> <PV> <MP>
 <MP>------> λ | , <PV> <MP>
